@@ -12,12 +12,26 @@ class PostFormTests(TestCase):
         self.authorized_client.force_login(self.user)
 
     def test_create_post(self):
+        self.group = Group.objects.create(
+            title="Тестовая группа",
+            slug="test-slug",
+            description="Тестовое описание",
+        )
         posts_count = Post.objects.count()
-        form_data = {"text": "Тестовый текст"}
+        form_data = {
+            "text": "Тестовый текст",
+            "group": self.group.id
+        }
         self.authorized_client.post(
             reverse("posts:post_create"), data=form_data
         )
         self.assertEqual(Post.objects.count(), posts_count + 1)
+        self.assertTrue(Post.objects.filter(
+        text="Тестовый текст",
+        group_id=self.group.id,
+        author = self.user
+        ).exists())
+
 
     def test_post_edit(self):
         self.group = Group.objects.create(

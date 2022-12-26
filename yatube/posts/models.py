@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
+from yatube.settings import LETTERS_IN_STR
+
 User = get_user_model()
 
 
@@ -39,7 +41,7 @@ class Post(models.Model):
     )
 
     def __str__(self):
-        return self.text[:15]
+        return self.text[:LETTERS_IN_STR]
 
     class Meta():
         ordering = ['-pub_date']

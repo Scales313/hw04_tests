@@ -25,8 +25,12 @@ SECRET_KEY = '4b_3y^7g10qmgf9(se+enh0&o_n#l1d7oexsns9vwkxmi^4vce'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '[::1]',
+    'testserver',
+]
 
 # Application definition
 
@@ -123,11 +127,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '  /static/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 POSTS_ON_PAGE = 10
+LETTERS_IN_STR = 15
 
 LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'posts:index'
@@ -137,9 +142,4 @@ EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '[::1]',
-    'testserver',
-]
+CSRF_FAILURE_VIEW = 'core.views.csrf_failure'
