@@ -27,11 +27,10 @@ class PostFormTests(TestCase):
         )
         self.assertEqual(Post.objects.count(), posts_count + 1)
         self.assertTrue(Post.objects.filter(
-        text="Тестовый текст",
-        group_id=self.group.id,
-        author = self.user
+            text="Тестовый текст",
+            group_id=self.group.id,
+            author=self.user
         ).exists())
-
 
     def test_post_edit(self):
         self.group = Group.objects.create(

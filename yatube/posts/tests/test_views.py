@@ -54,8 +54,8 @@ class PostPagesTests(TestCase):
         response = self.guest_client.get(reverse("posts:index"))
         expected = list(Post.objects.all()[:POSTS_ON_PAGE])
         self.assertEqual(list(response.context["page_obj"]), expected)
-        self.assertEqual(response.context.get("post").text, self.post.text) 
-        self.assertEqual(response.context.get("post").author, self.post.author) 
+        self.assertEqual(response.context.get("post").text, self.post.text)
+        self.assertEqual(response.context.get("post").author, self.post.author)
         self.assertEqual(response.context.get("post").group, self.post.group)
 
     def test_group_list_show_correct_context(self):
@@ -66,8 +66,8 @@ class PostPagesTests(TestCase):
             group_id=self.group.id)[:POSTS_ON_PAGE]
         )
         self.assertEqual(list(response.context["page_obj"]), expected)
-        self.assertEqual(response.context.get("post").text, self.post.text) 
-        self.assertEqual(response.context.get("post").author, self.post.author) 
+        self.assertEqual(response.context.get("post").text, self.post.text)
+        self.assertEqual(response.context.get("post").author, self.post.author)
         self.assertEqual(response.context.get("post").group, self.post.group)
 
     def test_profile_show_correct_context(self):
@@ -78,10 +78,9 @@ class PostPagesTests(TestCase):
             author_id=self.user.id)[:POSTS_ON_PAGE]
         )
         self.assertEqual(list(response.context["page_obj"]), expected)
-        self.assertEqual(response.context.get("post").text, self.post.text) 
-        self.assertEqual(response.context.get("post").author, self.post.author) 
+        self.assertEqual(response.context.get("post").text, self.post.text)
+        self.assertEqual(response.context.get("post").author, self.post.author)
         self.assertEqual(response.context.get("post").group, self.post.group)
-        
 
     def test_post_detail_show_correct_context(self):
         response = self.guest_client.get(
@@ -103,8 +102,8 @@ class PostPagesTests(TestCase):
             with self.subTest(template=template):
                 form_field = response.context["form"].fields[template]
                 self.assertIsInstance(form_field, expected)
-        self.assertEqual(response.context.get("post").text, self.post.text) 
-        self.assertEqual(response.context.get("post").author, self.post.author) 
+        self.assertEqual(response.context.get("post").text, self.post.text)
+        self.assertEqual(response.context.get("post").author, self.post.author)
         self.assertEqual(response.context.get("post").group, self.post.group)
 
     def test_create_show_correct_context(self):
